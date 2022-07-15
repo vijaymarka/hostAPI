@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-app.get('/', (req, res) => {
+app.get('/v1', (req, res) => {
 res.send("Welcome to Home Page.. This is Hosting from Aws Pipeline");
 })
 
