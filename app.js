@@ -66,6 +66,22 @@ app.post("/add-product", async (req, res) => {
 
 
 
+app.get("/products", async (req, res) => {
+  try {
+    let products = await Product.find();
+    // res.send(products);
+    if (products.length > 0) {
+      res.send(products);
+    } else {
+      res.send({ result: "No products found" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
+
 app.get('/v1', (req, res) => {
 res.send("Welcome to Home Page");
 })
