@@ -119,7 +119,7 @@ app.get("/questions", async (req, res) => {
 });
 
 app.delete("/question/:id", async (req, res) => {
-  const result = await Question.deleteOne({ _id: req.params.id });
+  const result = await Questions.deleteOne({ _id: req.params.id });
   
   res.send(result);
 });
