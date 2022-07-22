@@ -4,6 +4,7 @@ const cors = require("cors");
 const db = require("./models");
 const userss = require("./models/User");
 const Product = require("./models/Product");
+const Questions = require("./models/Question")
 
 const app = express();
 app.use(express.json());
@@ -65,7 +66,6 @@ app.post("/add-product", async (req, res) => {
 });
 
 
-
 app.get("/products", async (req, res) => {
   try {
     let products = await Product.find();
@@ -74,6 +74,44 @@ app.get("/products", async (req, res) => {
       res.send(products);
     } else {
       res.send({ result: "No products found" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
+app.post("/add-question", async (req, res) => {
+    const question = new Questions();
+    question.question = req.body.question;
+    question.answer_options[0] = req.body.answer_options[0]; 
+    question.answer_options[1] = req.body.answer_options[1]; 
+    question.answer_options[2] = req.body.answer_options[2]; 
+    question.answer_options[3] = req.body.answer_options[3]; 
+    question.category = req.body.category;
+    question.type = req.body.type;
+    await question.save((err, question) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    } else {
+      console.log(question);
+      res.send(question);
+    }
+  });
+})
+
+
+
+app.get("/questions", async (req, res) => {
+  try {
+    let questions = await Questions.find();
+
+    if (questions.length > 0) {
+      console.log(questions);
+      res.send(questions);
+    } else {
+      res.send({ result: "No questions found" });
     }
   } catch (err) {
     console.log(err);
