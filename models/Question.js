@@ -2,10 +2,7 @@ const mongoose = require("mongoose");
 
 const questionSchema = new mongoose.Schema({
   question: { type: String },
-  answer_options: Array,
-  type: {
-    type: String,
-  },
+  options: Array,
   correct_option: { type: String },
   category: { type: String },
   tag: Array,
