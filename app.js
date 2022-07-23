@@ -54,6 +54,7 @@ app.post("/add-product", async (req, res) => {
   productt.tag[0] = req.body.tag[0];
   productt.tag[1] = req.body.tag[1];
   productt.tag[2] = req.body.tag[2];
+  
   await productt.save((err, productt) => {
     if (err) {
       res.status(500).send({ message: err });
@@ -88,6 +89,7 @@ app.post("/add-question", async (req, res) => {
     question.options[1] = req.body.options[1]; 
     question.options[2] = req.body.options[2]; 
     question.options[3] = req.body.options[3]; 
+    question.correct_option = req.body.correct_option;
     question.category = req.body.category;
     question.type = req.body.type;
     await question.save((err, question) => {
