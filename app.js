@@ -90,6 +90,7 @@ app.post("/add-question", async (req, res) => {
     question.options[2] = req.body.options[2]; 
     question.options[3] = req.body.options[3]; 
     question.correct_option = req.body.correct_option;
+    question.right_answer[0] = req.body.right_answer;
     question.category = req.body.category;
     question.type = req.body.type;
     await question.save((err, question) => {
